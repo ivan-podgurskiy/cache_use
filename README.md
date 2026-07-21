@@ -17,7 +17,7 @@ mix phx.server
 curl "http://localhost:4000/api/fetch?path=/users&id=1&ttl=60"
 curl "http://localhost:4000/api/fetch?path=/users&id=1&ttl=60"
 curl "http://localhost:4000/api/cache/size"
-curl -X DELETE "http://localhost:4000/api/cache?path=/users&id=1"
+curl -X DELETE "http://localhost:4000/api/cache?path=/users&id=1&ttl=60"
 curl -X POST "http://localhost:4000/api/cache/clear"
 ```
 

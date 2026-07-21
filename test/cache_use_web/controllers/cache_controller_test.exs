@@ -32,14 +32,14 @@ defmodule CacheUseWeb.CacheControllerTest do
   end
 
   test "invalidate removes only the selected request", %{conn: conn} do
-    first = conn |> get(~p"/api/fetch?path=/users&id=1") |> json_response(200)
+    first = conn |> get(~p"/api/fetch?path=/users&id=1&ttl=60") |> json_response(200)
     other = conn |> get(~p"/api/fetch?path=/users&id=2") |> json_response(200)
 
-    assert conn |> delete(~p"/api/cache?path=/users&id=1") |> json_response(200) == %{
+    assert conn |> delete(~p"/api/cache?path=/users&id=1&ttl=60") |> json_response(200) == %{
              "ok" => true
            }
 
-    refetched = conn |> get(~p"/api/fetch?path=/users&id=1") |> json_response(200)
+    refetched = conn |> get(~p"/api/fetch?path=/users&id=1&ttl=60") |> json_response(200)
     cached_other = conn |> get(~p"/api/fetch?path=/users&id=2") |> json_response(200)
 
     assert refetched["body"]["sequence"] != first["body"]["sequence"]
