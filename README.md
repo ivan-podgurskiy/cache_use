@@ -1,18 +1,25 @@
-# CacheUse
+# Cache Use
 
-To start your Phoenix server:
+Phoenix JSON API sandbox for experimenting with the local cache package at
+`../cache`.
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+## Setup
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+```bash
+mix deps.get
+mix test
+mix phx.server
+```
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Try It
 
-## Learn more
+```bash
+curl "http://localhost:4000/api/fetch?path=/users&id=1&ttl=60"
+curl "http://localhost:4000/api/fetch?path=/users&id=1&ttl=60"
+curl "http://localhost:4000/api/cache/size"
+curl -X DELETE "http://localhost:4000/api/cache?path=/users&id=1"
+curl -X POST "http://localhost:4000/api/cache/clear"
+```
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+Repeated identical fetches should return the same upstream `sequence`
+until TTL expiry, invalidation, or clear.
