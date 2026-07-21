@@ -22,6 +22,8 @@ erl_crash.dump
 # Temporary files, for example, from tests.
 /tmp/
 
+# Superpowers scratch artifacts.
+.superpowers/
+
 # Ignore package tarball (built via "mix hex.build").
 cache_use-*.tar
-
