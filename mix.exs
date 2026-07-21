@@ -35,6 +35,7 @@ defmodule CacheUse.MixProject do
       {:phoenix, "~> 1.7.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:plug_cowboy, "~> 2.5"},
+      {:jason, "~> 1.4"},
       {:cache, path: "../cache"}
     ]
   end

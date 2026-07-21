@@ -7,6 +7,10 @@ defmodule CacheUseWeb.Router do
 
   scope "/api", CacheUseWeb do
     pipe_through :api
-  end
 
+    get "/fetch", CacheController, :fetch
+    post "/cache/clear", CacheController, :clear
+    delete "/cache", CacheController, :invalidate
+    get "/cache/size", CacheController, :size
+  end
 end
