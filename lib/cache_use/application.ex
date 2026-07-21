@@ -8,11 +8,9 @@ defmodule CacheUse.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      {Phoenix.PubSub, name: CacheUse.PubSub},
-      # Start a worker by calling: CacheUse.Worker.start_link(arg)
-      # {CacheUse.Worker, arg},
-      # Start to serve requests, typically the last entry
-      CacheUseWeb.Endpoint
+      CacheUseWeb.Endpoint,
+      CacheUse.Upstream.Counter,
+      {Cache.LRU, cap: 100, upstream: &CacheUse.Upstream.fetch/1, name: CacheUse.Cache}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
