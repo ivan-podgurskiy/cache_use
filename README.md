@@ -1,7 +1,7 @@
 # Cache Use
 
-Phoenix JSON API sandbox for experimenting with the local cache package at
-`../cache`.
+Phoenix JSON API sandbox for experimenting with the cache package from
+`https://github.com/ivan-podgurskiy/cache`.
 
 ## Setup
 
