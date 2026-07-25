@@ -17,9 +17,9 @@ mix phx.server
 curl "http://localhost:4000/api/fetch?path=/users&id=1&ttl=60"
 curl "http://localhost:4000/api/fetch?path=/users&id=1&ttl=60"
 curl "http://localhost:4000/api/cache/size"
-curl -X DELETE "http://localhost:4000/api/cache?path=/users&id=1&ttl=60"
-curl -X POST "http://localhost:4000/api/cache/clear"
 ```
 
 Repeated identical fetches should return the same upstream `sequence`
-until TTL expiry, invalidation, or clear.
+until TTL expiry or LRU eviction. The current cache package exposes
+`fetch/2` and `size/1`; mutation endpoints are intentionally not exposed
+by this sandbox.

@@ -13,23 +13,6 @@ defmodule CacheUseWeb.CacheController do
     end
   end
 
-  def clear(conn, _params) do
-    :ok = Cache.LRU.clear(CacheUse.Cache)
-    json(conn, %{ok: true})
-  end
-
-  def invalidate(conn, params) do
-    with {:ok, request} <- build_request(params) do
-      :ok = Cache.LRU.invalidate(CacheUse.Cache, request)
-      json(conn, %{ok: true})
-    else
-      {:error, message} ->
-        conn
-        |> put_status(:bad_request)
-        |> json(%{error: message})
-    end
-  end
-
   def size(conn, _params) do
     json(conn, %{size: Cache.LRU.size(CacheUse.Cache)})
   end

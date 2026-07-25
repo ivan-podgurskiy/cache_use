@@ -9,8 +9,6 @@ defmodule CacheUseWeb.Router do
     pipe_through :api
 
     get "/fetch", CacheController, :fetch
-    post "/cache/clear", CacheController, :clear
-    delete "/cache", CacheController, :invalidate
     get "/cache/size", CacheController, :size
   end
 end
